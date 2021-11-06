@@ -1,0 +1,138 @@
+<head>
+  <link rel="stylesheet" href=".././src/styled2.css" />
+</head>
+<div class="formreg">
+  <h1>REGISTRO DE PACIENTES</h1>
+  <form id="formulario">
+    <div class="textbox">
+      <div class="grouptext">
+        <label class="text">Nombre</label>
+        <input
+          class="input"
+          type="text"
+          name="user"
+          placeholder="Nombre"
+          id="nombre"
+        />
+      </div>
+      <div class="grouptext">
+        <label class="text">Contraseña</label>
+        <input
+          class="input"
+          type="password"
+          name="user"
+          placeholder="*****"
+          id="password"
+        />
+      </div>
+      <div class="grouptext">
+        <label class="text">Usuario</label>
+        <input
+          class="input"
+          type="text"
+          name="user"
+          placeholder="Nombre"
+          id="user"
+        />
+      </div>
+      <div class="grouptext">
+        <label class="text">Correo Electrónico</label>
+        <input
+          class="input"
+          type="text"
+          name="user"
+          placeholder="ejemplo@ejemplo.com"
+          id="email"
+        />
+      </div>
+    </div>
+    <div class="selectoption">
+      <select class="input" id="opt">
+        <option value="0">Seleccione el Tipo de Usuario</option>
+        <option value="1">Administrador</option>
+        <option value="2">Usuario</option>
+        <option value="3">Medico</option>
+        <option value="4">Enfermero</option>
+        <option value="5">Secretaria</option>
+      </select>
+    </div>
+    <div class="checkbox">
+      <label class="text"
+        >Aceptar terminos y condiciones<input
+          type="checkbox"
+          name="terminos"
+          id="terminos"
+      /></label>
+    </div>
+    <div class="buttons">
+      <button class="btn" type="submit" value="enviar">
+        <p>Registrar Paciente</p>
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const enviar = async (e) => {
+    if (validetions() != true) {
+      console.log("error");
+    } else {
+      console.log("correcto");
+      e.preventDefault();
+    }
+  };
+  var formulario = document.getElementById("formulario");
+  function validetions(e) {
+    var dat = true;
+    var opciones = document.getElementById("opt");
+    if (/^([A-Za-zñÑÁÉÍÓÚáéíóú.1-9 ])*$/.test(
+      document.getElementById("user").value) &&
+      document.getElementById("user").value.length > 2
+    ) {
+    } else {
+      console.log("user");
+      dat = false;
+    }
+    if (document.getElementById("password").value.length > 4) {
+    } else {
+      console.log("password");
+      dat = false;
+    }
+    if (
+      /^([a-zA-Z])*$/.test(
+        document.getElementById("nombre").value
+      ) &&
+      document.getElementById("nombre").value.length > 3
+    ) {
+    } else {
+      console.log("nombre");
+      dat = false;
+    }
+
+    if (
+      opciones.value == 0 ||
+      opciones.value == ""
+    ) {
+      alert("Selecciona Una opción");
+      document.getElementById("opt").focus();
+    }
+
+    if (
+      /^([a-z1-9@*._])*$/.test(document.getElementById("email").value) &&
+      document.getElementById("email").value.length > 5
+    ) {
+    } else {
+      console.log("email");
+      dat = false;
+    }
+    if (!document.getElementById("terminos").checked) {
+      alert("debe de aceptar los terminos");
+      dat = false;
+    } else {
+      
+    }
+    e.preventDefault();
+    return dat;
+  }
+  formulario.addEventListener("submit", validetions);
+</script>

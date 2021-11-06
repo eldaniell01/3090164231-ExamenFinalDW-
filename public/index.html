@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href=".././src/styled.css" />
+    <title>Examen final</title>
+  </head>
+  <body>
+    <div>
+      <ul>
+        <li><a class="active" onclick="aparecer()">Registro</a></li>
+        <li><a onclick="aparecer1()">Selección</a></li>
+        <li><a onclick="aparecer2()">Eliminar</a></li>
+        <li><a onclick="aparecer3()">Actualizar</a></li>
+      </ul>
+    </div>
+    <div class="paginas">
+      <iframe
+        class="reg"
+        id="registro"
+        src="./registro.htm"
+        style="border: 3px solid #8c8c8c"
+        title="Iframe Example"
+      ></iframe>
+      <iframe
+        class="reg"
+        id="mostrar"
+        src="./mostrar.htm"
+        style="border: 3px solid #8c8c8c"
+        title="Iframe Example"
+      ></iframe>
+      <iframe
+        class="reg"
+        id="actualizar"
+        src="./actualizar.htm"
+        style="border: 3px solid #8c8c8c"
+        title="Iframe Example"
+      ></iframe>
+      <iframe
+        class="reg"
+        id="eliminar"
+        src="./eliminar.htm"
+        style="border: 3px solid #8c8c8c"
+        title="Iframe Example"
+      ></iframe>
+    </div>
+
+    <div id="root"></div>
+    <script>
+      function aparecer() {
+        document.getElementById("registro").style.display = "flex";
+        document.getElementById("mostrar").style.display = "none";
+        document.getElementById("actualizar").style.display = "none";
+        document.getElementById("eliminar").style.display = "none";
+      }
+      function aparecer1() {
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("mostrar").style.display = "flex";
+        document.getElementById("actualizar").style.display = "none";
+        document.getElementById("eliminar").style.display = "none";
+      }
+      function aparecer2() {
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("mostrar").style.display = "none";
+        document.getElementById("actualizar").style.display = "none";
+        document.getElementById("eliminar").style.display = "flex";
+      }
+      function aparecer3() {
+        document.getElementById("registro").style.display = "none";
+        document.getElementById("mostrar").style.display = "none";
+        document.getElementById("actualizar").style.display = "flex";
+        document.getElementById("eliminar").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
