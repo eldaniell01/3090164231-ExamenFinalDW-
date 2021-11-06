@@ -6,13 +6,13 @@
   <form id="formulario">
     <div class="textbox">
       <div class="grouptext">
-        <label class="text">Nombre</label>
+        <label class="text">Usuario</label>
         <input
           class="input"
           type="text"
-          name="user"
-          placeholder="Nombre"
-          id="nombre"
+          name="usuario"
+          placeholder="user"
+          id="user"
         />
       </div>
       <div class="grouptext">
@@ -20,19 +20,19 @@
         <input
           class="input"
           type="password"
-          name="user"
+          name="pass"
           placeholder="*****"
           id="password"
         />
       </div>
       <div class="grouptext">
-        <label class="text">Usuario</label>
+        <label class="text">Nombre</label>
         <input
           class="input"
           type="text"
-          name="user"
+          name="nombre"
           placeholder="Nombre"
-          id="user"
+          id="nombre"
         />
       </div>
       <div class="grouptext">
@@ -40,14 +40,14 @@
         <input
           class="input"
           type="text"
-          name="user"
+          name="correo"
           placeholder="ejemplo@ejemplo.com"
           id="email"
         />
       </div>
     </div>
     <div class="selectoption">
-      <select class="input" id="opt">
+      <select class="input" name="opcion" id="opt">
         <option value="0">Seleccione el Tipo de Usuario</option>
         <option value="1">Administrador</option>
         <option value="2">Usuario</option>
@@ -82,11 +82,13 @@
     }
   };
   var formulario = document.getElementById("formulario");
-  function validetions(e) {
+  function validetions() {
     var dat = true;
     var opciones = document.getElementById("opt");
-    if (/^([A-Za-zñÑÁÉÍÓÚáéíóú.1-9 ])*$/.test(
-      document.getElementById("user").value) &&
+    if (
+      /^([A-Za-zñÑÁÉÍÓÚáéíóú.1-9 ])*$/.test(
+        document.getElementById("user").value
+      ) &&
       document.getElementById("user").value.length > 2
     ) {
     } else {
@@ -99,9 +101,7 @@
       dat = false;
     }
     if (
-      /^([a-zA-Z])*$/.test(
-        document.getElementById("nombre").value
-      ) &&
+      /^([a-zA-Z])*$/.test(document.getElementById("nombre").value) &&
       document.getElementById("nombre").value.length > 3
     ) {
     } else {
@@ -109,10 +109,7 @@
       dat = false;
     }
 
-    if (
-      opciones.value == 0 ||
-      opciones.value == ""
-    ) {
+    if (opciones.value == 0 || opciones.value == "") {
       alert("Selecciona Una opción");
       document.getElementById("opt").focus();
     }
@@ -129,10 +126,31 @@
       alert("debe de aceptar los terminos");
       dat = false;
     } else {
-      
     }
-    e.preventDefault();
+
     return dat;
   }
-  formulario.addEventListener("submit", validetions);
+  formulario.addEventListener("submit", function (e) {
+    e.preventDefault();
+    /*if (validetions() != true) {
+      console.log("error");
+    } else {
+      console.log("correcto");
+    }*/
+    console.log("me diste");
+    var datos = new FormData(formulario);
+    console.log(datos);
+    console.log(datos.get("usuario"));
+    console.log(datos.get("pass"));
+    console.log(datos.get("nombre"));
+    console.log(datos.get("correo"));
+    console.log(datos.get("opcion"));
+    fetch("http://localhost:3000/appi/post.php", {
+      method: "POST",
+      body: datos,
+    }).then(res => res.json())
+    .then(data => {
+        console.log(data);
+    });
+  });
 </script>
