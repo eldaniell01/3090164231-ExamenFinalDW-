@@ -4,19 +4,18 @@
             $vector =array();
             $conexion = new conexion();
             $bd = $conexion->getconexion();
-            $sql = "select *from usuario";
+            $sql = "select *from pacientes";
             $consult = $bd->prepare($sql);
             $consult->execute();
             while($fila=$consult->fetch()){
                 $vector[] = array(
-                    "id" => $fila['id'],
-                    "nombre"=> $fila['nombre'],
-                    "apellido"=>$fila['apellido'],
-                    "direccion"=>$fila['direccion'],
-                    "telefono"=>$fila['telefono'],
-                    "dpi"=>$fila['dpi'],
-                    "correo"=>$fila['correo'],
+                    "id" => $fila["id"],
+                    "usuario"=> $fila['usuario'],
                     "pass"=>$fila['pass'],
+                    "nombre"=>$fila['nombre'],
+                    "correo"=>$fila['correo'],
+                    "tipo_id"=>$fila['tipo_id'],
+    
                 );
             }
             return $vector;
@@ -31,7 +30,7 @@
             $consult->execute();
             while($fila=$consult->fetch()){
                 $vector[] = array(
-                    "id" => $fila['id'],
+                    "id" => $fila["id"],
                     "nombre"=> $fila['nombre'],
                     "apellido"=>$fila['apellido'],
                     "direccion"=>$fila['direccion'],

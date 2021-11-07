@@ -1,1 +1,46 @@
-<h1>hosdfsdla</h1>
+<head>
+  <link rel="stylesheet" href=".././src/styled2.css" type="text/css"/>
+  
+</head>
+<div>
+  <h1>LISTADO</h1>
+</div>
+
+<script>
+  async function traerpacientes() {
+    const respuesta = await fetch("http://localhost:3000/appi/get.php");
+    const paciente = respuesta.json();
+    const promise1 = Promise.resolve(paciente);
+    promise1.then((value) => {
+      console.log(value);
+    });
+    console.log(paciente);
+    var json = JSON.stringify(paciente);
+    console.log(json);
+    return promise1;
+  }
+  function mostrar(n) {
+      var nn;
+      document.write("<h1 style='font-family:Arial; font-weight: 700;'>LISTADO</h1>")
+      document.write("<table style='border-color:red; border-radius:5px' width='100%'; border='1px' cellspacing='0'>");
+    for (let i = 0; i < 2; i++) {
+      id=n[i].id;
+      usuario =n[i].usuario;
+      pass = n[i].pass;
+      nombre =n[i].nombre;
+      correo =n[i].correo;
+      tipo = n[i].tipo_id;
+      document.write("<tr>");
+      document.write("<td>"+id+"</td>");
+      document.write("<td>"+usuario+"</td>");
+      document.write("<td>"+pass+"</td>");
+      document.write("<td>"+nombre+"</td>");
+      document.write("<td>"+correo+"</td>");
+      document.write("<td>"+tipo+"</td>");
+      document.write("</tr>");
+    }
+    document.write("</table>");
+
+  }
+  traerpacientes().then(mostrar);
+</script>
